@@ -31,7 +31,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngular", policy =>
         policy.WithOrigins(
             "http://localhost:4200", // Dev
-            "https://chicken-farm-ui.onrender.com" // Production
+            "https://chicken-farm-ui.onrender.com" ,// Production
+            "https://chicken-farm-klge.onrender.com
         )
         .AllowAnyHeader()
         .AllowAnyMethod());
