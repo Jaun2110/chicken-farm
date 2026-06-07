@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [LayoutComponent],
+  template: `<app-layout />`
 })
-export class AppComponent {
-  title = 'chicken-farm-ui';
-}
+export class AppComponent {}

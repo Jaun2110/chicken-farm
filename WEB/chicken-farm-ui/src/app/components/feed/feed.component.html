@@ -1,0 +1,68 @@
+<div class="grid grid-cols-12 gap-4">
+  <!-- Form -->
+  <div class="col-span-12 md:col-span-4">
+    <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+      <h2 class="font-bold text-stone-800 mb-4">Feed Mix Calculator</h2>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-sm font-medium text-stone-700 mb-1">Feed type</label>
+          <select [(ngModel)]="request.feedType"
+                  class="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            @for (type of feedTypes; track type) {
+              <option [value]="type">{{ type }}</option>
+            }
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-stone-700 mb-1">Total feed to mix (kg)</label>
+          <input [(ngModel)]="request.totalKg" type="number"
+                 class="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+        </div>
+
+        <button (click)="calculate()"
+                class="w-full bg-green-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
+                [disabled]="loading">
+          {{ loading ? 'Calculating...' : 'Calculate Mix' }}
+        </button>
+
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+          Use a poultry vitamin/mineral premix and adjust protein with a local nutritionist where possible.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="col-span-12 md:col-span-8">
+    <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+      <h2 class="font-bold text-stone-800 mb-4">Mix Result</h2>
+
+      @if (!result) {
+        <p class="text-stone-500">Enter feed type and amount to calculate the mix.</p>
+      } @else {
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-stone-200">
+                <th class="text-left py-2 px-3 font-medium text-stone-600">Ingredient</th>
+                <th class="text-left py-2 px-3 font-medium text-stone-600">%</th>
+                <th class="text-left py-2 px-3 font-medium text-stone-600">Kg</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (ing of result.ingredients; track ing.name) {
+                <tr class="border-b border-stone-100">
+                  <td class="py-2 px-3 font-medium text-stone-800">{{ ing.name }}</td>
+                  <td class="py-2 px-3 text-stone-700">{{ ing.percentage }}%</td>
+                  <td class="py-2 px-3 text-stone-700">{{ ing.kg }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </div>
+</div>

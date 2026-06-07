@@ -1,0 +1,72 @@
+@if (loading) {
+  <div class="text-center py-12">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+    <p class="mt-4 text-stone-500">Loading...</p>
+  </div>
+} @else if (dashboard) {
+  <div class="grid grid-cols-12 gap-4">
+    <!-- Stats Cards -->
+    <div class="col-span-12 md:col-span-3">
+      <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+        <p class="text-stone-500 text-sm">Current birds</p>
+        <p class="text-3xl font-bold text-stone-800">{{ dashboard.totalBirds }}</p>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-3">
+      <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+        <p class="text-stone-500 text-sm">Eggs collected</p>
+        <p class="text-3xl font-bold text-stone-800">{{ dashboard.totalEggsCollected }}</p>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-3">
+      <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+        <p class="text-stone-500 text-sm">Egg revenue</p>
+        <p class="text-3xl font-bold text-stone-800">R{{ dashboard.totalEggRevenue | number:'1.0-0' }}</p>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-3">
+      <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+        <p class="text-stone-500 text-sm">Open orders</p>
+        <p class="text-3xl font-bold text-stone-800">{{ dashboard.openOrders }}</p>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="col-span-12 md:col-span-6">
+      <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+        <h3 class="font-bold text-stone-800 mb-4">Today's Checklist</h3>
+        <ul class="space-y-2 text-stone-600">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600">✓</span>
+            <span>Check water, feed, shade and predator safety.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600">✓</span>
+            <span>Collect eggs morning and afternoon once laying starts.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600">✓</span>
+            <span>Move chicken tractor daily to protect soil and spread manure.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600">✓</span>
+            <span>Record mortalities, feed used, eggs collected and orders.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cycle Guidance -->
+    <div class="col-span-12 md:col-span-6">
+      <div class="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+        <h3 class="font-bold text-stone-800 mb-4">Cycle Guidance</h3>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+          <p class="text-green-800">{{ dashboard.cycleAdvice }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}

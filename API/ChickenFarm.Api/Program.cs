@@ -26,13 +26,15 @@ builder.Services.AddScoped<PaddockService>();
 builder.Services.AddScoped<DashboardService>();
 builder.Services.AddSingleton<FeedCalculatorService>();
 
-// CORS (for Angular dev server)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
-        policy.WithOrigins("http://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod());
+        policy.WithOrigins(
+            "http://localhost:4200", // Dev
+            "https://chicken-farm-ui.onrender.com" // Production
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod());
 });
 
 builder.Services.AddControllers();
@@ -53,9 +55,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseCors("AllowAngular");
-app.UseHttpsRedirection();
+
 app.MapControllers();
 
 app.Run();

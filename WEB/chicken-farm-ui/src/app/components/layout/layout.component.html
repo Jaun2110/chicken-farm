@@ -1,0 +1,26 @@
+<div class="min-h-screen bg-stone-100">
+  <header class="bg-gradient-to-r from-green-800 to-green-600 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <h1 class="text-2xl font-bold">Free-Range Regenerative Chicken Farm App</h1>
+      <p class="text-green-100 text-sm mt-1">Day-old chicks → brooder → chicken tractor → 60-week egg cycle → flock replacement</p>
+    </div>
+  </header>
+
+  <nav class="bg-white border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex gap-2 py-3 overflow-x-auto">
+        <a *ngFor="let item of navItems"
+           [routerLink]="item.path"
+           routerLinkActive="bg-green-600 text-white"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-stone-100 text-stone-700 hover:bg-stone-200">
+          {{ item.label }}
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 py-6">
+    <router-outlet />
+  </main>
+</div>
