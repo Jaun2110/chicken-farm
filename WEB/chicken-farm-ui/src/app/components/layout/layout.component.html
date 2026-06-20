@@ -11,9 +11,9 @@
       <div class="flex gap-2 py-3 overflow-x-auto">
         <a *ngFor="let item of navItems"
            [routerLink]="item.path"
-           routerLinkActive="bg-green-600 text-white"
+           routerLinkActive="bg-green-800 text-white"
            [routerLinkActiveOptions]="{exact: true}"
-           class="px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-stone-100 text-stone-700 hover:bg-stone-200">
+           class="px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-stone-100 text-stone-700 hover:bg-green-500">
           {{ item.label }}
         </a>
       </div>

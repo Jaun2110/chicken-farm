@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+    paths: 'WEB/chicken-farm-ui/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
